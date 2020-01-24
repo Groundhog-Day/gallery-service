@@ -1,0 +1,15 @@
+DROP DATABASE IF EXISTS aircarousel
+
+CREATE DATABASE aircarousel
+
+CREATE TABLE images (
+id INT NOT NULL AUTO_INCREMENT,
+image VARCHAR(256),
+productId INT,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE products (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(40)
+);
