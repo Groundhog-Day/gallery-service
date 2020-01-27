@@ -17,7 +17,7 @@ for(var i = 1; i < 31; i++) {
 for(let i = 0; i < 100; i++) {
   let fakeAddress = faker.address.streetAddress() + ' ' + faker.address.city()
   db.query({
-    sql: 'INSERT INTO products (name) VALUES (?);',
+    sql: 'INSERT INTO accomodations (name) VALUES (?);',
     values: [fakeAddress]
   }, (err, data) => {
     if (err) {
@@ -32,7 +32,7 @@ for(let i = 1; i < 101; i++) {
   var randNumOfImages = Math.random() * (20 - 3) + 3;
   for(let j = 0; j < randNumOfImages; j++) {
     db.query({
-      sql: 'INSERT INTO images (productId, image) VALUES (?, ?);',
+      sql: 'INSERT INTO images (accomodationId, image) VALUES (?, ?);',
       values: [i, urlArray[Math.floor(Math.random() * 30)]]
     }, (err, data) => {
       if (err) {
