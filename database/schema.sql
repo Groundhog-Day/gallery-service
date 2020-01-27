@@ -1,6 +1,8 @@
-DROP DATABASE IF EXISTS aircarousel
+DROP DATABASE IF EXISTS aircarousel;
 
-CREATE DATABASE aircarousel
+CREATE DATABASE aircarousel;
+
+USE aircarousel;
 
 CREATE TABLE images (
 id INT NOT NULL AUTO_INCREMENT,
@@ -11,5 +13,6 @@ PRIMARY KEY (id)
 
 CREATE TABLE products (
 id INT NOT NULL AUTO_INCREMENT,
-name VARCHAR(40)
+name VARCHAR(64),
+PRIMARY KEY (id)
 );
