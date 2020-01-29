@@ -4,7 +4,8 @@ import Modal from './Modal.jsx';
   constructor(props) {
     super(props)
     this.state = {
-      show: false
+      show: false,
+      data: []
     };
 
   }
@@ -18,7 +19,7 @@ import Modal from './Modal.jsx';
     <div>
       <h1>React Rendering</h1>
       <button  onClick={this.showModal.bind(this)}> show Modal </button>
-      <Modal show={this.state.show}> Modal text </Modal>
+      <Modal show={this.state.show} showModal={this.showModal.bind(this)}> Modal text </Modal>
     </div>);
   };
 }
