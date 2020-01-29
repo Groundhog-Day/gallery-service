@@ -1,2 +1,6 @@
 database/config.js
 node_modules
+
+client/dist/react-dom.development.js
+client/dist/react.development.js
+
