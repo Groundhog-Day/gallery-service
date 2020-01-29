@@ -26,6 +26,7 @@ export default function Modal(props) {
   <div className="backdrop" style={backdropStyle}>  
     <div className="modal" style={modalStyle}>
       <h1>Hello Modal</h1>
+      <img src={props.imgs[0].image}></img>
       <button onClick={props.showModal}>Close Modal</button>
     </div>
   </div>);

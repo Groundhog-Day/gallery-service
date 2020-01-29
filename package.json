@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/9-airbnb-again/air-carousel#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "babel-preset-react": "^6.24.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
