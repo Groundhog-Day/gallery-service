@@ -1,33 +1,34 @@
 import React from 'react';
-export default function Modal(props) {
-  const backdropStyle = {
-    position: 'fixed',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    padding: 50
-  };
+import styled from 'styled-components';
 
-  const modalStyle = {
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    maxWidth: 500,
-    minHeight: 300,
-    margin: '0 auto',
-    padding: 30
-  };
+const ModalBackdrop = styled.div`
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+`;
+
+const ModalBody = styled.div`
+  background-color: #fff;
+  borderRadius: 5;
+  min-height: 1000;
+  margin: 0 auto;
+`;
+
+
+export default function Modal(props) {
 
   if(!props.show){
     return null;
   }
   return (
-  <div className="backdrop" style={backdropStyle}>  
-    <div className="modal" style={modalStyle}>
+  <ModalBackdrop>
+    <ModalBody>
       <h1>Hello Modal</h1>
-      <img src={props.imgs[0].image}></img>
+      <img src={props.imgs[0].image} style={{borderRadius: '15px'}}></img>
       <button onClick={props.showModal}>Close Modal</button>
-    </div>
-  </div>);
+    </ModalBody>
+  </ModalBackdrop>);
 };
