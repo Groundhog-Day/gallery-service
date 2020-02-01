@@ -36,13 +36,32 @@ const MainImage = styled.img`
 `;
 
 const CloseButton = styled.button`
+  color: #505050;
   align-self: flex-start;
   justify-self: flex-end;
+  border: none;
+  font-size: 70px;
+  font-weight: lighter;
 `;
 
-const Arrow = styled.a`
+const Arrow = styled.button`
+  color: #505050;
   align-self: center;
   padding: 3%;
+  border: none;
+  font-size: 70px;
+  font-weight: lighter;
+`;
+
+const ImageCounter = styled.div`
+  color: #606060;
+  font-family: Helvetica;
+  align-self: center;
+`;
+const Description = styled.div`
+  color: #606060;
+  font-family: Helvetica;
+  font-weight: lighter;
 `;
 
 ///////////////////////
@@ -54,6 +73,24 @@ export default class Modal extends React.Component {
     this.state = {
       currentImage: 0
     }
+    this.handleArrowClick = this.handleArrowClick.bind(this);
+  }
+
+  // d is boolean (direction). true represents right. false represents left.
+  handleArrowClick(d) {
+    if (d) {
+      if (this.state.currentImage < this.props.imgs.length - 1) {
+        this.setState({currentImage: this.state.currentImage + 1});
+      } else {
+        this.setState({currentImage: 0});
+      }
+    } else {
+      if (this.state.currentImage === 0) {
+        this.setState({currentImage: this.props.imgs.length - 1});
+      } else {
+        this.setState({currentImage: this.state.currentImage - 1});
+      }
+    }
   }
 
   render() {
@@ -63,12 +100,15 @@ export default class Modal extends React.Component {
     return (
     <ModalBackdrop>
       <ModalBody>
-        <Arrow>&#10094;</Arrow>
+        <Arrow onClick={() => {this.handleArrowClick(false)}}>&#x2039;</Arrow>
         <ImageWrapper>
           <MainImage src={this.props.imgs[this.state.currentImage].image} />
         </ImageWrapper>
-        <Arrow>&#10095;</Arrow>
-        <CloseButton onClick={this.props.showModal}>Close</CloseButton>
+        <Arrow onClick={() => {this.handleArrowClick(true)}}>&#x203A;</Arrow>
+        <ImageCounter>{this.state.currentImage + 1}/{this.props.imgs.length}
+          <Description><br></br>The World Famous Seashell House ~ Casa Caracol</Description>
+        </ImageCounter>
+        <CloseButton onClick={this.props.showModal}>&times;</CloseButton>
       </ModalBody>
     </ModalBackdrop>);
   }
