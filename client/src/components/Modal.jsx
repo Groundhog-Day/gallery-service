@@ -1,34 +1,65 @@
 import React from 'react';
 import styled from 'styled-components';
-
+////////////////////////////
+// styles for each component
 const ModalBackdrop = styled.div`
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0,0,0,0.3);
+  display: flex;
+  flex: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.3);
 `;
 
 const ModalBody = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
   background-color: #fff;
-  borderRadius: 5;
-  min-height: 1000;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
 `;
 
+const ImageWrapper = styled.div`
+align-self: center;
+justify-self: center;
+`
+const MainImage = styled.img`
+  border-radius: 15px;
+  align-items: center;
+  justify-self: center;
+`
 
-export default function Modal(props) {
+const CloseButton = styled.button`
+  align-self: flex-start;
+  justify-self: flex-end;
+`
+///////////////////////
+// main Modal component
+export default class Modal extends React.Component {
 
-  if(!props.show){
-    return null;
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
   }
-  return (
-  <ModalBackdrop>
-    <ModalBody>
-      <h1>Hello Modal</h1>
-      <img src={props.imgs[0].image} style={{borderRadius: '15px'}}></img>
-      <button onClick={props.showModal}>Close Modal</button>
-    </ModalBody>
-  </ModalBackdrop>);
+
+  render() {
+    if(!this.props.show){
+      return null;
+    }
+    return (
+    <ModalBackdrop>
+      <ModalBody>
+        <ImageWrapper>
+          <MainImage src={this.props.imgs[0].image} />
+        </ImageWrapper>
+        <CloseButton onClick={this.props.showModal}>Close</CloseButton>
+      </ModalBody>
+    </ModalBackdrop>);
+  }
 };
