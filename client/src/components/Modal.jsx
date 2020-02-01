@@ -44,7 +44,7 @@ export default class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      currentImage: 0
     }
   }
 
@@ -56,7 +56,7 @@ export default class Modal extends React.Component {
     <ModalBackdrop>
       <ModalBody>
         <ImageWrapper>
-          <MainImage src={this.props.imgs[0].image} />
+          <MainImage src={this.props.imgs[this.state.currentImage].image} />
         </ImageWrapper>
         <CloseButton onClick={this.props.showModal}>Close</CloseButton>
       </ModalBody>
