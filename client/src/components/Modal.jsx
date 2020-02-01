@@ -24,6 +24,8 @@ const ModalBody = styled.div`
 `;
 
 const ImageWrapper = styled.div`
+display: flex;
+flex-direction: row;
 align-self: center;
 justify-self: center;
 `
@@ -31,12 +33,18 @@ const MainImage = styled.img`
   border-radius: 15px;
   align-items: center;
   justify-self: center;
-`
+`;
 
 const CloseButton = styled.button`
   align-self: flex-start;
   justify-self: flex-end;
-`
+`;
+
+const Arrow = styled.a`
+  align-self: center;
+  padding: 3%;
+`;
+
 ///////////////////////
 // main Modal component
 export default class Modal extends React.Component {
@@ -55,9 +63,11 @@ export default class Modal extends React.Component {
     return (
     <ModalBackdrop>
       <ModalBody>
+        <Arrow>&#10094;</Arrow>
         <ImageWrapper>
           <MainImage src={this.props.imgs[this.state.currentImage].image} />
         </ImageWrapper>
+        <Arrow>&#10095;</Arrow>
         <CloseButton onClick={this.props.showModal}>Close</CloseButton>
       </ModalBody>
     </ModalBackdrop>);
