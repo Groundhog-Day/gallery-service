@@ -2,6 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import Modal from './Modal.jsx';
 import FrontImages from './FrontImages.jsx';
+import styled from 'styled-components';
+
+const NameTitle = styled.h1`
+  color: #606060;
+  font-family: Helvetica;
+`;
 
 
  export class App extends React.Component {
@@ -66,11 +72,12 @@ import FrontImages from './FrontImages.jsx';
   render() {
     return (
     <div>
-      <h1>air-carousel</h1>
+      <NameTitle>air-carousel</NameTitle>
       <FrontImages imgs={this.state.data} click={this.handleFrontImageClick}/>
       <button style={{'float': 'right'}} onClick={this.showModal}> View Images </button>
       <Modal show={this.state.show} showModal={this.showModal} imgs={this.state.data} name={this.state.name}
       currentImage={this.state.currentImage} handleArrowClick={this.handleArrowClick} handleThumbClick={this.handleThumbClick}></Modal>
+      <NameTitle>{this.state.name}</NameTitle>
     </div>);
   };
 }
