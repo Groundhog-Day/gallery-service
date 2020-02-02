@@ -81,6 +81,7 @@ export default class Modal extends React.Component {
       currentImage: 0
     }
     this.handleArrowClick = this.handleArrowClick.bind(this);
+    this.handleThumbClick = this.handleThumbClick.bind(this);
   }
 
   // d is boolean (direction). true represents right. false represents left.
@@ -100,6 +101,10 @@ export default class Modal extends React.Component {
     }
   }
 
+  handleThumbClick(i) {
+    this.setState({currentImage: i});
+  }
+
   render() {
     if(!this.props.show){
       return null;
@@ -112,7 +117,9 @@ export default class Modal extends React.Component {
           <MainImage src={this.props.imgs[this.state.currentImage].image} />
         </ImageWrapper>
         <Arrow onClick={() => {this.handleArrowClick(true)}}>&#x203A;</Arrow>
-        <ImageCounter>{this.state.currentImage + 1}/{this.props.imgs.length}
+        <ImageCounter>
+          <ImageList currentImage={this.state.currentImage} imgs={this.props.imgs} click={this.handleThumbClick}></ImageList>
+          {this.state.currentImage + 1}/{this.props.imgs.length}
           <Description><br></br>The World Famous Seashell House ~ Casa Caracol</Description>
         </ImageCounter>
         <CloseButton onClick={this.props.showModal} id='close' onkeydown={(e) => {console.log(e)}}>&times;</CloseButton>
