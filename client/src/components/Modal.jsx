@@ -102,7 +102,7 @@ export default class Modal extends React.Component {
         <ImageCounter>
           <ImageList currentImage={this.props.currentImage} imgs={this.props.imgs} click={this.props.handleThumbClick}></ImageList>
           {this.props.currentImage + 1}/{this.props.imgs.length}
-          <Description><br></br>The World Famous Seashell House ~ Casa Caracol</Description>
+          <Description><br></br>{this.props.name}</Description>
         </ImageCounter>
         <CloseButton onClick={this.props.showModal} id='close' onkeydown={(e) => {console.log(e)}}>&times;</CloseButton>
       </ModalBody>

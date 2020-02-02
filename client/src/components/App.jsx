@@ -13,7 +13,8 @@ import FrontImages from './FrontImages.jsx';
     this.state = {
       show: false,
       data: [],
-      currentImage: 0
+      currentImage: 0,
+      name: ''
     };
     // request images for a random accomodationId
     axios({
@@ -22,7 +23,7 @@ import FrontImages from './FrontImages.jsx';
     })
     .then((res) => {
       console.log(res.data);
-      this.setState({data: res.data});
+      this.setState({data: res.data.imgArr, name: res.data.name});
       console.log(this.state.data[0].image);
     })
     .catch((err) => {console.log(err)});
@@ -68,7 +69,7 @@ import FrontImages from './FrontImages.jsx';
       <h1>air-carousel</h1>
       <FrontImages imgs={this.state.data} click={this.handleFrontImageClick}/>
       <button style={{'float': 'right'}} onClick={this.showModal}> View Images </button>
-      <Modal show={this.state.show} showModal={this.showModal} imgs={this.state.data}
+      <Modal show={this.state.show} showModal={this.showModal} imgs={this.state.data} name={this.state.name}
       currentImage={this.state.currentImage} handleArrowClick={this.handleArrowClick} handleThumbClick={this.handleThumbClick}></Modal>
     </div>);
   };
