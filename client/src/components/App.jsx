@@ -1,12 +1,16 @@
 import React from 'react';
-import Modal from './Modal.jsx';
 import axios from 'axios';
+import Modal from './Modal.jsx';
+import FrontImages from './FrontImages.jsx';
+
+
  export class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       show: false,
-      data: []
+      data: [],
+      
     };
     // request images for a random accomodationId
     axios({
@@ -28,8 +32,9 @@ import axios from 'axios';
   render() {
     return (
     <div>
-      <h1>React Rendering</h1>
-      <button  onClick={this.showModal.bind(this)}> show Modal </button>
+      <h1>air-carousel</h1>
+      <FrontImages imgs={this.state.data}/>
+      <button style={{'float': 'right'}} onClick={this.showModal.bind(this)}> View Images </button>
       <Modal show={this.state.show} showModal={this.showModal.bind(this)} imgs={this.state.data}></Modal>
     </div>);
   };

@@ -74,7 +74,9 @@ export default function ImageList(props) {
         <Layer1>
           <div style={{position: 'absolute'}}>
             <MainList>
-              {props.imgs.map((a, i) => {return <ListItem img={a.image} index={i} currentImage={props.currentImage} click={props.click}/>})}
+              {props.imgs.map((a, i) => {
+                return <ListItem img={a.image} index={i} currentImage={props.currentImage} click={props.click} key={i}/>}
+              )}
             </MainList>
           </div>
         </Layer1>

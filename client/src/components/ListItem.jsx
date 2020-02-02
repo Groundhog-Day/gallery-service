@@ -8,12 +8,14 @@ const StyledImage = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 5px;
+  cursor: pointer;
 `;
 const SelectedImage = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 5px;
   border: 1px solid black;
+  cursor: pointer;
 `;
 export default function ListItem(props) {
   if (props.currentImage === props.index) {

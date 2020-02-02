@@ -48,6 +48,7 @@ const CloseButton = styled.button`
   border: none;
   font-size: 70px;
   font-weight: lighter;
+  cursor: pointer;
 `;
 
 const Arrow = styled.button`
@@ -58,6 +59,7 @@ const Arrow = styled.button`
   font-size: 70px;
   font-weight: lighter;
   padding: 30px;
+  cursor: pointer;
 `;
 
 const ImageCounter = styled.div`
