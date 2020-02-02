@@ -32,10 +32,10 @@ export default function FrontImages(props) {
   return (
     <MainWrapper>
       <FirstImageWrapper>
-        <FirstImage src={props.imgs[0].image}></FirstImage>
+        <FirstImage src={props.imgs[0].image} onClick={()=>{props.click(0)}}></FirstImage>
       </FirstImageWrapper>
-      <FrontImageVert1 imgs={props.imgs}></FrontImageVert1>
-      <FrontImageVert2 imgs={props.imgs}></FrontImageVert2>
+      <FrontImageVert1 imgs={props.imgs} click={props.click}></FrontImageVert1>
+      <FrontImageVert2 imgs={props.imgs} click={props.click}></FrontImageVert2>
     </MainWrapper>
   );
 };

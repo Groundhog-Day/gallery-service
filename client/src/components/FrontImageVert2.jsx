@@ -26,10 +26,10 @@ export default function FrontImageVert2(props){
   return (
     <MainImageWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[3].image}></SizedImage>
+        <SizedImage src={props.imgs[3].image} onClick={()=>{props.click(3)}}></SizedImage>
       </InnerWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[4].image}></SizedImage>
+        <SizedImage src={props.imgs[4].image} onClick={()=>{props.click(4)}}></SizedImage>
       </InnerWrapper>
     </MainImageWrapper>
   );

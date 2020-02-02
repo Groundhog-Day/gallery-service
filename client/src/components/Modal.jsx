@@ -80,32 +80,12 @@ export default class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: 0
+
     }
-    this.handleArrowClick = this.handleArrowClick.bind(this);
-    this.handleThumbClick = this.handleThumbClick.bind(this);
+    
   }
 
-  // d is boolean (direction). true represents right. false represents left.
-  handleArrowClick(d) {
-    if (d) {
-      if (this.state.currentImage < this.props.imgs.length - 1) {
-        this.setState({currentImage: this.state.currentImage + 1});
-      } else {
-        this.setState({currentImage: 0});
-      }
-    } else {
-      if (this.state.currentImage === 0) {
-        this.setState({currentImage: this.props.imgs.length - 1});
-      } else {
-        this.setState({currentImage: this.state.currentImage - 1});
-      }
-    }
-  }
-
-  handleThumbClick(i) {
-    this.setState({currentImage: i});
-  }
+  
 
   render() {
     if(!this.props.show){
@@ -114,14 +94,14 @@ export default class Modal extends React.Component {
     return (
     <ModalBackdrop>
       <ModalBody>
-        <Arrow onClick={() => {this.handleArrowClick(false)}}>&#x2039;</Arrow>
+        <Arrow onClick={() => {this.props.handleArrowClick(false)}}>&#x2039;</Arrow>
         <ImageWrapper>
-          <MainImage src={this.props.imgs[this.state.currentImage].image} />
+          <MainImage src={this.props.imgs[this.props.currentImage].image} />
         </ImageWrapper>
-        <Arrow onClick={() => {this.handleArrowClick(true)}}>&#x203A;</Arrow>
+        <Arrow onClick={() => {this.props.handleArrowClick(true)}}>&#x203A;</Arrow>
         <ImageCounter>
-          <ImageList currentImage={this.state.currentImage} imgs={this.props.imgs} click={this.handleThumbClick}></ImageList>
-          {this.state.currentImage + 1}/{this.props.imgs.length}
+          <ImageList currentImage={this.props.currentImage} imgs={this.props.imgs} click={this.props.handleThumbClick}></ImageList>
+          {this.props.currentImage + 1}/{this.props.imgs.length}
           <Description><br></br>The World Famous Seashell House ~ Casa Caracol</Description>
         </ImageCounter>
         <CloseButton onClick={this.props.showModal} id='close' onkeydown={(e) => {console.log(e)}}>&times;</CloseButton>
