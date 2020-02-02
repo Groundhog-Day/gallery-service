@@ -1,26 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
+// key codes
+// esc key 27
+// left arrow 37
+// right arrow 39
+
 ////////////////////////////
 // styles for each component
 const ModalBackdrop = styled.div`
   display: flex;
-  flex: 1;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: #fff;
 `;
 
 const ModalBody = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: #fff;
   width: 100%;
   height: 100%;
+`;
+
+const ArrowsAndMainImage = styled.div`
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  background-color: #fff;
 `;
 
 const ImageWrapper = styled.div`
@@ -47,10 +59,10 @@ const CloseButton = styled.button`
 const Arrow = styled.button`
   color: #505050;
   align-self: center;
-  padding: 3%;
   border: none;
   font-size: 70px;
   font-weight: lighter;
+  padding: 50px;
 `;
 
 const ImageCounter = styled.div`
@@ -108,8 +120,9 @@ export default class Modal extends React.Component {
         <ImageCounter>{this.state.currentImage + 1}/{this.props.imgs.length}
           <Description><br></br>The World Famous Seashell House ~ Casa Caracol</Description>
         </ImageCounter>
-        <CloseButton onClick={this.props.showModal}>&times;</CloseButton>
+        
       </ModalBody>
+      <CloseButton onClick={this.props.showModal} id='close' onkeydown={(e) => {console.log(e)}}>&times;</CloseButton>
     </ModalBackdrop>);
   }
 };
