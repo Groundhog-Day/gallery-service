@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ImageList from './ImageList.jsx';
 // key codes
 // esc key 27
 // left arrow 37
@@ -40,6 +41,7 @@ const MainImage = styled.img`
 `;
 
 const CloseButton = styled.button`
+  background-color: #fff;
   color: #505050;
   align-self: flex-start;
   justify-self: flex-end;
@@ -50,6 +52,7 @@ const CloseButton = styled.button`
 
 const Arrow = styled.button`
   color: #505050;
+  background-color: #fff;
   align-self: center;
   border: none;
   font-size: 70px;

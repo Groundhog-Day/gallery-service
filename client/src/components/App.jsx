@@ -11,7 +11,7 @@ import axios from 'axios';
     // request images for a random accomodationId
     axios({
       method: 'GET',
-      url: `http://localhost:1337/api/${Math.ceil(Math.random() * 100)}`,
+      url: `/api/${Math.ceil(Math.random() * 100)}`,
     })
     .then((res) => {
       console.log(res.data);
