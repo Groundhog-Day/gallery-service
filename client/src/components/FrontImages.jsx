@@ -26,16 +26,20 @@ const FirstImage = styled.img`
 `;
 
 export default function FrontImages(props) {
-  if(props.imgs.length === 0) {
+  const { imgs } = props;
+  const { click } = props;
+
+  if (imgs.length === 0) {
     return null;
   }
+
   return (
     <MainWrapper>
       <FirstImageWrapper>
-        <FirstImage src={props.imgs[0].image} onClick={()=>{props.click(0)}}></FirstImage>
+        <FirstImage src={imgs[0].image} onClick={() => { click(0); }} />
       </FirstImageWrapper>
-      <FrontImageVert1 imgs={props.imgs} click={props.click}></FrontImageVert1>
-      <FrontImageVert2 imgs={props.imgs} click={props.click}></FrontImageVert2>
+      <FrontImageVert1 imgs={imgs} click={click} />
+      <FrontImageVert2 imgs={imgs} click={click} />
     </MainWrapper>
   );
-};
+}

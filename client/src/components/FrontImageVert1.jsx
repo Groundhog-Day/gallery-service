@@ -17,19 +17,19 @@ const SizedImage = styled.img`
   object-fit: cover;
 `;
 
-//only render a column if both images for the column exist
-export default function FrontImageVert1(props){
-  if(!props.imgs[1] || !props.imgs[2]) {
+// only render a column if both images for the column exist
+export default function FrontImageVert1(props) {
+  if (!props.imgs[1] || !props.imgs[2]) {
     return null;
   }
 
   return (
     <MainImageWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[1].image} onClick={()=>{props.click(1)}}></SizedImage>
+        <SizedImage src={props.imgs[1].image} onClick={() => { props.click(1); }} />
       </InnerWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[2].image} onClick={()=>{props.click(2)}}></SizedImage>
+        <SizedImage src={props.imgs[2].image} onClick={() => { props.click(2); }} />
       </InnerWrapper>
     </MainImageWrapper>
   );
