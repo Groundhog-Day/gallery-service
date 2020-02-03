@@ -4,12 +4,10 @@ import styled from 'styled-components';
 import Modal from './Modal.jsx';
 import FrontImages from './FrontImages.jsx';
 
-
 const NameTitle = styled.h1`
   color: #606060;
   font-family: Helvetica;
 `;
-
 
 export default class App extends React.Component {
   constructor(props) {
@@ -75,9 +73,9 @@ export default class App extends React.Component {
       <div>
         <NameTitle>air-carousel</NameTitle>
         <FrontImages imgs={this.state.data} click={this.handleFrontImageClick} />
-        <button style={{'float': 'right'}} onClick={this.showModal}> View Images </button>
+        <button style={{ float: 'right' }} onClick={this.showModal}> View Images </button>
         <Modal show={this.state.show} showModal={this.showModal} imgs={this.state.data} name={this.state.name}
-        currentImage={this.state.currentImage} handleArrowClick={this.handleArrowClick} handleThumbClick={this.handleThumbClick} />
+          currentImage={this.state.currentImage} handleArrowClick={this.handleArrowClick} handleThumbClick={this.handleThumbClick} />
         <NameTitle>{this.state.name}</NameTitle>
       </div>
     );
