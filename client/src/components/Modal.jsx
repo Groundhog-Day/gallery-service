@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import ImageList from './ImageList.jsx';
+// key codes
+// esc key 27
+// left arrow 37
+// right arrow 39
+
 ////////////////////////////
 // styles for each component
 const ModalBackdrop = styled.div`
   display: flex;
-  flex: 1;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -36,21 +41,25 @@ const MainImage = styled.img`
 `;
 
 const CloseButton = styled.button`
+  background-color: #fff;
   color: #505050;
   align-self: flex-start;
   justify-self: flex-end;
   border: none;
   font-size: 70px;
   font-weight: lighter;
+  cursor: pointer;
 `;
 
 const Arrow = styled.button`
   color: #505050;
+  background-color: #fff;
   align-self: center;
-  padding: 3%;
   border: none;
   font-size: 70px;
   font-weight: lighter;
+  padding: 30px;
+  cursor: pointer;
 `;
 
 const ImageCounter = styled.div`
@@ -71,27 +80,12 @@ export default class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: 0
+
     }
-    this.handleArrowClick = this.handleArrowClick.bind(this);
+    
   }
 
-  // d is boolean (direction). true represents right. false represents left.
-  handleArrowClick(d) {
-    if (d) {
-      if (this.state.currentImage < this.props.imgs.length - 1) {
-        this.setState({currentImage: this.state.currentImage + 1});
-      } else {
-        this.setState({currentImage: 0});
-      }
-    } else {
-      if (this.state.currentImage === 0) {
-        this.setState({currentImage: this.props.imgs.length - 1});
-      } else {
-        this.setState({currentImage: this.state.currentImage - 1});
-      }
-    }
-  }
+  
 
   render() {
     if(!this.props.show){
@@ -100,15 +94,17 @@ export default class Modal extends React.Component {
     return (
     <ModalBackdrop>
       <ModalBody>
-        <Arrow onClick={() => {this.handleArrowClick(false)}}>&#x2039;</Arrow>
+        <Arrow onClick={() => {this.props.handleArrowClick(false)}}>&#x2039;</Arrow>
         <ImageWrapper>
-          <MainImage src={this.props.imgs[this.state.currentImage].image} />
+          <MainImage src={this.props.imgs[this.props.currentImage].image} />
         </ImageWrapper>
-        <Arrow onClick={() => {this.handleArrowClick(true)}}>&#x203A;</Arrow>
-        <ImageCounter>{this.state.currentImage + 1}/{this.props.imgs.length}
-          <Description><br></br>The World Famous Seashell House ~ Casa Caracol</Description>
+        <Arrow onClick={() => {this.props.handleArrowClick(true)}}>&#x203A;</Arrow>
+        <ImageCounter>
+          <ImageList currentImage={this.props.currentImage} imgs={this.props.imgs} click={this.props.handleThumbClick}></ImageList>
+          {this.props.currentImage + 1}/{this.props.imgs.length}
+          <Description><br></br>{this.props.name}</Description>
         </ImageCounter>
-        <CloseButton onClick={this.props.showModal}>&times;</CloseButton>
+        <CloseButton onClick={this.props.showModal} id='close' onkeydown={(e) => {console.log(e)}}>&times;</CloseButton>
       </ModalBody>
     </ModalBackdrop>);
   }
