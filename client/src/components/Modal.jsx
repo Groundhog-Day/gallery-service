@@ -12,29 +12,32 @@ const ModalBackdrop = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: #fff;
 `;
 
 const ModalBody = styled.div`
   display: flex;
   flex-direction: row;
-  flex: 1;
   justify-content: space-between;
+  align-items: center;
   background-color: #fff;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
 `;
 
 const ImageWrapper = styled.div`
-display: flex;
-flex-direction: row;
-align-self: center;
-justify-self: center;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-self: center;
+  width: 55%;
 `
 const MainImage = styled.img`
   border-radius: 15px;
   align-items: center;
   justify-self: center;
+  width: 100%
 `;
 
 const CloseButton = styled.button`
@@ -55,7 +58,7 @@ const Arrow = styled.button`
   border: none;
   font-size: 70px;
   font-weight: lighter;
-  padding: 30px;
+  padding: 20px;
   cursor: pointer;
 `;
 
@@ -80,6 +83,7 @@ export default class Modal extends React.Component {
 
     }
   }
+ 
   // key codes
   // esc key 27
   // left arrow 37
@@ -115,8 +119,8 @@ export default class Modal extends React.Component {
           {this.props.currentImage + 1}/{this.props.imgs.length}
           <Description><br></br>{this.props.name}</Description>
         </ImageCounter>
-        <CloseButton onClick={this.props.showModal} id='close'>&times;</CloseButton>
       </ModalBody>
+      <CloseButton onClick={this.props.showModal} id='close'>&times;</CloseButton>
     </ModalBackdrop>);
   }
 };

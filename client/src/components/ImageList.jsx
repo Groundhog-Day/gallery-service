@@ -11,6 +11,7 @@ const MainWrapper = styled.div`
 `;
 
 const FirstInnerWrapper = styled.div`
+  
   max-width: 105vh !important;
   margin-left: auto !important;
   margin-right: auto !important;
