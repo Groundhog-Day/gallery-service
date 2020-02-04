@@ -53,7 +53,7 @@ const Layer1 = styled.div`
 // main list will have transform: translateX(-56px) per image past 3
 const MainList = styled.ul`
   transition: 0.4s;
-  transform: translateX(${props => -56 * (props.currentImage > 1 ? props.currentImage - 1 : 0)}px);
+  transform: translateX(${props => -56 * (props.currentImage > 1 ? (props.currentImage < props.imgs.length - 2 ? props.currentImage - 1 : props.imgs.length - 3) : 0)}px);
   display: flex;
   flex-direction: row;
   position: absolute !important;
@@ -71,11 +71,11 @@ export default function ImageList(props) {
   <MainWrapper>
     <FirstInnerWrapper>
       <SecondInnerWrapper>
-        <FirstGradientDiv></FirstGradientDiv>
-        <SecondGradientDiv></SecondGradientDiv>
+        <FirstGradientDiv />
+        <SecondGradientDiv />
         <Layer1>
           <div style={{position: 'absolute'}}>
-            <MainList currentImage={props.currentImage}>
+            <MainList currentImage={props.currentImage} imgs={props.imgs}>
               {props.imgs.map((a, i) => {
                 return <ListItem img={a.image} index={i} currentImage={props.currentImage} click={props.click} key={i}/>}
               )}
