@@ -23,18 +23,18 @@ const SizedImage = styled.img`
 `;
 
 // only render a column if both images for the column exist
-export default function FrontImageVert2(props) {
-  if (!props.imgs[3] || !props.imgs[4]) {
+export default function FrontImageVert(props) {
+  if (!props.imgs[props.startIndex] || !props.imgs[props.startIndex + 1]) {
     return null;
   }
 
   return (
     <MainImageWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[3].image} onClick={() => { props.click(3); }} />
+        <SizedImage src={props.imgs[props.startIndex].image} onClick={() => { props.click(props.startIndex); }} />
       </InnerWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[4].image} onClick={() => { props.click(4); }} />
+        <SizedImage src={props.imgs[props.startIndex + 1].image} onClick={() => { props.click(props.startIndex + 1); }} />
       </InnerWrapper>
     </MainImageWrapper>
   );

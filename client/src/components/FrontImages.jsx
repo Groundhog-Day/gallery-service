@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FrontImageVert1 from './FrontImageVert1.jsx';
-import FrontImageVert2 from './FrontImageVert2.jsx';
+import FrontImageVert from './FrontImageVert.jsx';
 
 const MainWrapper = styled.div`
   display: flex;
@@ -43,8 +42,8 @@ export default function FrontImages(props) {
       <FirstImageWrapper>
         <FirstImage src={imgs[0].image} onClick={() => { click(0); }} />
       </FirstImageWrapper>
-      <FrontImageVert1 imgs={imgs} click={click} />
-      <FrontImageVert2 imgs={imgs} click={click} />
+      <FrontImageVert imgs={imgs} click={click} startIndex={1} />
+      <FrontImageVert imgs={imgs} click={click} startIndex={3} />
     </MainWrapper>
   );
 }
