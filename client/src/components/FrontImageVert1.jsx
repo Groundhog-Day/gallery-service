@@ -9,12 +9,17 @@ const InnerWrapper = styled.div`
   width: 100%;
   height: 200px;
   border: 1px solid grey;
+  overflow: hidden;
 `;
 
 const SizedImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
+  &:hover {
+    transform: scale(1.2);
+  }
+  transition: 0.4s;
 `;
 
 // only render a column if both images for the column exist

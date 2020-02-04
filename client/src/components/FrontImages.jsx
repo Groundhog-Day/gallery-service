@@ -17,12 +17,17 @@ const FirstImageWrapper = styled.div`
   width: 100%;
   height: 400px;
   border: 2px solid grey;
+  overflow: hidden;
 `;
 
 const FirstImage = styled.img`
   height: 400px;
   width: 100%;
   object-fit: cover;
+  &:hover {
+    transform: scale(1.2);
+  }
+  transition: 0.4s;
 `;
 
 export default function FrontImages(props) {
