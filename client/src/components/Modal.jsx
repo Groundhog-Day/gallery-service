@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ImageList from './ImageList.jsx';
-// key codes
-// esc key 27
-// left arrow 37
-// right arrow 39
+
 
 ////////////////////////////
 // styles for each component
@@ -82,19 +79,33 @@ export default class Modal extends React.Component {
     this.state = {
 
     }
-    
   }
-
-  
+  // key codes
+  // esc key 27
+  // left arrow 37
+  // right arrow 39
+  handleKeyPress(e) {
+    e = e || window.event;
+    if (e.keyCode == '39') {
+      this.props.handleArrowClick(true);
+    }
+    else if (e.keyCode == '37') {
+      this.props.handleArrowClick(false);
+    }
+    else if (e.keyCode == '27') {
+      this.props.showModal();
+    }
+  }
 
   render() {
     if(!this.props.show){
       return null;
     }
+    document.onkeydown = this.handleKeyPress.bind(this);
     return (
     <ModalBackdrop>
       <ModalBody>
-        <Arrow onClick={() => {this.props.handleArrowClick(false)}}>&#x2039;</Arrow>
+        <Arrow onClick={() => {this.props.handleArrowClick(false)}} >&#x2039;</Arrow>
         <ImageWrapper>
           <MainImage src={this.props.imgs[this.props.currentImage].image} />
         </ImageWrapper>
@@ -104,7 +115,7 @@ export default class Modal extends React.Component {
           {this.props.currentImage + 1}/{this.props.imgs.length}
           <Description><br></br>{this.props.name}</Description>
         </ImageCounter>
-        <CloseButton onClick={this.props.showModal} id='close' onkeydown={(e) => {console.log(e)}}>&times;</CloseButton>
+        <CloseButton onClick={this.props.showModal} id='close'>&times;</CloseButton>
       </ModalBody>
     </ModalBackdrop>);
   }

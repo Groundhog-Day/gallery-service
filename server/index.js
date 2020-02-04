@@ -11,7 +11,6 @@ app.get('/api/:id', (req, res) => {
       res.writeHead(500);
       res.end('Server error');
     } else {
-      console.log(data);
       res.writeHead(200);
       res.end(JSON.stringify(data));
     }

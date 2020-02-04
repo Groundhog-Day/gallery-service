@@ -66,7 +66,7 @@ const MainList = styled.ul`
 export default function ImageList(props) {
 
 
-  //test li <li style={{'marginLeft': '8px'}}><img src='https://picsum.photos/48'></img></li>
+  // test li <li style={{'marginLeft': '8px'}}><img src='https://picsum.photos/48'></img></li>
   return(
   <MainWrapper>
     <FirstInnerWrapper>
