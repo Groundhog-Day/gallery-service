@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('../database/db');
+const path = require('path');
 const port = 1337;
 
 app.get('/api/:id', (req, res) => {
@@ -16,7 +17,7 @@ app.get('/api/:id', (req, res) => {
     }
   })
 });
-app.use(express.static('../client/dist'));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.listen(port, () => {
   console.log(`aircarousel Listening on port: ${port}`);
 });
