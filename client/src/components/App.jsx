@@ -29,7 +29,6 @@ export default class App extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ data: res.data.imgArr, name: res.data.name });
-        console.log(this.state.data[0].image);
       })
       .catch((err) => { console.log(err); });
 
