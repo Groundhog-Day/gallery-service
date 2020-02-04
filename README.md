@@ -8,3 +8,5 @@ npm install
 
 npm run seed ##make sure you are running mysql@5.7 first
 npm run server
+
+vim rulzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
