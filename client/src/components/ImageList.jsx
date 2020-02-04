@@ -9,6 +9,7 @@ const MainWrapper = styled.div`
   margin-bottom: 32px !important;
   display: block;
 `;
+
 const FirstInnerWrapper = styled.div`
   max-width: 105vh !important;
   margin-left: auto !important;
@@ -17,11 +18,10 @@ const FirstInnerWrapper = styled.div`
 `;
 
 const SecondInnerWrapper = styled.div`
-margin-left: auto !important;
-margin-right: auto !important;
-position: relative !important;
-transform: translateY(0px) !important;
-transition: -ms-transform 0.2s ease-out 0s, -webkit-transform 0.2s ease-out 0s, transform 0.2s ease-out 0s !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  position: relative !important;
+  transform: translateY(0px) !important;
 `;
 
 const FirstGradientDiv = styled.div`
@@ -49,31 +49,33 @@ const Layer1 = styled.div`
   height: 64px !important;
   overflow: hidden !important;
 `;
+
 // main list will have transform: translateX(-56px) per image past 3
+const MainList = styled.ul`
+  transition: 0.4s;
+  transform: translateX(${props => -56 * (props.currentImage > 1 ? (props.currentImage < props.imgs.length - 2 ? props.currentImage - 1 : props.imgs.length - 3) : 0)}px);
+  display: flex;
+  flex-direction: row;
+  position: absolute !important;
+  list-style-type: none !important;
+  left: 0px !important;  
+  margin: 0px !important;
+  padding: 0px 0px 0px 8px !important;
+`;
 
 export default function ImageList(props) {
-  const MainList = styled.ul`
-    transform: translateX(${-56 * (props.currentImage > 1 ? props.currentImage - 1 : 0)}px);
-    display: flex;
-    flex-direction: row;
-    position: absolute !important;
-    list-style-type: none !important;
-    left: 0px !important;
-    transition: 0.4s;
-    margin: 0px !important;
-    padding: 0px 0px 0px 8px !important;
-  `;
+
 
   //test li <li style={{'marginLeft': '8px'}}><img src='https://picsum.photos/48'></img></li>
   return(
   <MainWrapper>
     <FirstInnerWrapper>
       <SecondInnerWrapper>
-        <FirstGradientDiv></FirstGradientDiv>
-        <SecondGradientDiv></SecondGradientDiv>
+        <FirstGradientDiv />
+        <SecondGradientDiv />
         <Layer1>
           <div style={{position: 'absolute'}}>
-            <MainList>
+            <MainList currentImage={props.currentImage} imgs={props.imgs}>
               {props.imgs.map((a, i) => {
                 return <ListItem img={a.image} index={i} currentImage={props.currentImage} click={props.click} key={i}/>}
               )}

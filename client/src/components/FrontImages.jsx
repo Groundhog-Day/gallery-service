@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FrontImageVert1 from './FrontImageVert1.jsx';
-import FrontImageVert2 from './FrontImageVert2.jsx';
+import FrontImageVert from './FrontImageVert.jsx';
 
 const MainWrapper = styled.div`
   display: flex;
@@ -17,25 +16,34 @@ const FirstImageWrapper = styled.div`
   width: 100%;
   height: 400px;
   border: 2px solid grey;
+  overflow: hidden;
 `;
 
 const FirstImage = styled.img`
   height: 400px;
   width: 100%;
   object-fit: cover;
+  &:hover {
+    transform: scale(1.2);
+  }
+  transition: 0.4s;
 `;
 
 export default function FrontImages(props) {
-  if(props.imgs.length === 0) {
+  const { imgs } = props;
+  const { click } = props;
+
+  if (imgs.length === 0) {
     return null;
   }
+
   return (
     <MainWrapper>
       <FirstImageWrapper>
-        <FirstImage src={props.imgs[0].image} onClick={()=>{props.click(0)}}></FirstImage>
+        <FirstImage src={imgs[0].image} onClick={() => { click(0); }} />
       </FirstImageWrapper>
-      <FrontImageVert1 imgs={props.imgs} click={props.click}></FrontImageVert1>
-      <FrontImageVert2 imgs={props.imgs} click={props.click}></FrontImageVert2>
+      <FrontImageVert imgs={imgs} click={click} startIndex={1} />
+      <FrontImageVert imgs={imgs} click={click} startIndex={3} />
     </MainWrapper>
   );
-};
+}
