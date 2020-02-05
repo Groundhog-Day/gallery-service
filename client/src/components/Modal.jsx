@@ -13,6 +13,7 @@ const ModalBackdrop = styled.div`
   left: 0;
   right: 0;
   background-color: #fff;
+  z-index: 100;
 `;
 
 const ModalBody = styled.div`
