@@ -70,7 +70,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <NameTitle>air-carousel</NameTitle>
+        {/* <NameTitle>air-carousel</NameTitle> */}
         <FrontImages imgs={this.state.data} click={this.handleFrontImageClick} />
         <button style={{ float: 'right' }} onClick={this.showModal}> View Images </button>
         <Modal show={this.state.show} showModal={this.showModal} imgs={this.state.data} name={this.state.name}
