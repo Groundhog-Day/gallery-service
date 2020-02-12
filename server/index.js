@@ -1,28 +1,29 @@
 // Setup
 const express = require('express');
-const app = express();
-const db = require('../database/db');
 const path = require('path');
+
+const getRoutes = require('./routes/get.js');
+const postRoutes = require('./routes/post.js');
+const putRoutes = require('./routes/put.js');
+const deleteRoutes = require('./routes/delete.js');
+
+const app = express();
 const port = 1337;
 
 // Middleware
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// Routes
-app.get('/api/:id', (req, res) => {
-  console.log(req.params.id);
+// Create / POST
+app.use('/', postRoutes);
 
-  db.readId(req.params.id, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.writeHead(500);
-      res.end('Server error');
-    } else {
-      res.writeHead(200);
-      res.end(JSON.stringify(data));
-    }
-  });
-});
+// Read / GET
+app.use('/', getRoutes);
+
+// Update / PUT
+app.use('/', putRoutes);
+
+// Delete / DELETE
+app.use('/', deleteRoutes);
 
 // Initialisation
 app.listen(port, () => {

@@ -20,4 +20,17 @@
 npm run seed ##make sure you are running mysql@5.7 first
 npm run server
 
-### API Spec
+### RESTful API Specification
+*CRUD / HTTP*
+
+#### Create / POST
+
+#### Read / GET
+
+1. ``` /api/:id```
+a. For the specified ID, returns a listing's image and address data
+
+#### Update / PUT
+
+
+#### Delete / DELETE
