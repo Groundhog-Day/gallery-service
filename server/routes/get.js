@@ -3,7 +3,7 @@ const express = require('express');
 const getRoutes = express.Router();
 
 getRoutes.get('/api/:id', (req, res) => {
-  console.log('given ID: ', req.params.id);
+  console.log('accomodationId: ', req.params.id);
 
   db.readId(req.params.id, (err, data) => {
     if (err) {

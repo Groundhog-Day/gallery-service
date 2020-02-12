@@ -27,5 +27,5 @@ app.use('/', deleteRoutes);
 
 // Initialisation
 app.listen(port, () => {
-  console.log(`aircarousel Listening on port: ${port}`);
+  console.log(`aircarousel Listening on port: http://localhost:${port}`);
 });
