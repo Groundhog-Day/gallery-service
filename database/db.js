@@ -3,6 +3,10 @@ const mysqlConfig = require('./config.js');
 
 const db = mysql.createConnection(mysqlConfig);
 
+// module.exports = {
+
+// }
+
 module.exports.readId = function(id, cb) {
   result = {};
   db.query(`SELECT * FROM images where accommodationId=${id};`, (err, data) => {

@@ -78,5 +78,5 @@ export default class App extends React.Component {
         <NameTitle>{this.state.name}</NameTitle>
       </div>
     );
-  };
+  }
 }
