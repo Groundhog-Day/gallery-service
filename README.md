@@ -14,11 +14,7 @@
 2. Follow instructions in ```config.example.js``` to create a valid connection to MySQL
 3.  Modify the ```"seed"``` script in ```package.json``` to include your MySQL login credentials
 4. ```$ npm run seed```
-
 5. ```$npm run react-dev``` and ```$npm run start```
-
-npm run seed ##make sure you are running mysql@5.7 first
-npm run server
 
 ### RESTful API Specification
 *CRUD / HTTP*
