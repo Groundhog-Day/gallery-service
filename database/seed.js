@@ -1,8 +1,4 @@
-const mysql = require('mysql');
 const faker = require('faker');
-const mysqlConfig = require('./config.js');
-
-const db = mysql.createConnection(mysqlConfig);
 
 //#.jpg will be appended to this link
 const s3Link = 'https://absample.s3-us-west-1.amazonaws.com/img/i';

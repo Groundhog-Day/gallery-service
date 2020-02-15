@@ -1,6 +1,7 @@
 database/config.js
+
 node_modules
 package-lock.json
+
 client/dist/react-dom.development.js
 client/dist/react.development.js
-

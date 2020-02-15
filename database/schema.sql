@@ -1,18 +1,46 @@
-DROP DATABASE IF EXISTS aircarousel;
+/*
+ * Execute this file from the terminal:
+ * `psql -d postgres -U root < schema.sql`
+ *
+ */
 
-CREATE DATABASE aircarousel;
+DROP DATABASE IF EXISTS testbnb;
 
-USE aircarousel;
+CREATE DATABASE testbnb;
 
-CREATE TABLE images (
-id INT NOT NULL AUTO_INCREMENT,
-image VARCHAR(256),
-accommodationId INT,
-PRIMARY KEY (id)
+\c testbnb;
+
+DROP TABLE IF EXISTS public.listings;
+
+CREATE TABLE public.listings (
+  id BIGSERIAL,
+  title VARCHAR(64) NOT NULL,
+  imageId INTEGER NOT NULL,
+  PRIMARY KEY (id)
 );
 
-CREATE TABLE accommodations (
-id INT NOT NULL AUTO_INCREMENT,
-name VARCHAR(64),
-PRIMARY KEY (id)
+DROP TABLE IF EXISTS public.images;
+
+CREATE TABLE public.images (
+  id BIGSERIAL,
+  imageSet INTEGER NOT NULL,
+  imgUrl VARCHAR(256) NOT NULL,
+  imgDesc VARCHAR(256) NULL,
+  PRIMARY KEY (id)
 );
+
+-- ---
+-- Foreign Keys
+-- ---
+
+ALTER TABLE listings ADD FOREIGN KEY (imageId) REFERENCES public.images (id);
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `listings` (`id`,`title`,`imageId`) VALUES
+-- ('','','');
+
+-- INSERT INTO `images` (`id`,`sets`,`url`,`desc`) VALUES
+-- ('','','','');

@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const mysqlConfig = require('./config.js');
+const pgConfig = require('./config.js');
 
 const db = mysql.createConnection(mysqlConfig);
 
