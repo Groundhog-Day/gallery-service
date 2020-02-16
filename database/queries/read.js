@@ -1,8 +1,3 @@
-const mysql = require('mysql');
-const pgConfig = require('./config.js');
-
-const db = mysql.createConnection(mysqlConfig);
-
 module.exports = {
   // id = randomly generated accommodation id from front-end
   readId: function(id, cb) {

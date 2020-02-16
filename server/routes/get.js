@@ -1,4 +1,4 @@
-const db = require('../../database/db.js');
+const db = require('../../database/queries/read.js');
 const express = require('express');
 const getRoutes = express.Router();
 
