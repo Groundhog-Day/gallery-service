@@ -10,23 +10,25 @@ let rndInt = function (k, y) {
 
 module.exports = {
   csv: function(numOfRows) {
-    console.log(Date.now());
-    // Generate CSV data
-    let rows = [[ 'imgSet', 'imgUrl', 'imgDesc' ]];
-    for (let i = 1; i < numOfRows; i++) {
-      let x = rndInt(4, 7);
-      for (let j = 0; j < x; j++) {
-        rows.push([ i, faker.image.city(), faker.hacker.phrase() ]);
-      }
-    }
-    // Write CSV file
-    csv.writeToPath(path.resolve(__dirname, 'images.csv'), rows)
-      .on('error', err => console.error(err))
-      .on('finish', () => {
-        console.log(Date.now());
-        console.log('images.csv generated!');
-        this.insertion();
-      });
+
+    // console.log(Date.now());
+    // // Generate CSV data
+    // let rows = [[ 'imgSet', 'imgUrl', 'imgDesc' ]];
+    // for (let i = 1; i < numOfRows; i++) {
+    //   let x = rndInt(4, 7);
+    //   for (let j = 0; j < x; j++) {
+    //     rows.push([ i, faker.image.city(), faker.hacker.phrase() ]);
+    //   }
+    // }
+
+    // // Write CSV file
+    // csv.writeToPath(path.resolve(__dirname, 'images.csv'), rows)
+    //   .on('error', err => console.error(err))
+    //   .on('finish', () => {
+    //     console.log(Date.now());
+    //     console.log('images.csv generated!');
+    //     this.insertion();
+    //   });
   },
 
   insertion: function() {

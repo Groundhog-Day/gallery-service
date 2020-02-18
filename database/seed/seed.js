@@ -4,7 +4,7 @@ const images = require('./genImages.js');
 
 // Call the CSV generators (+1 to the input number)
 // listings.csv(11);
-images.csv(1000000);
+images.csv(100);
 
 // Insert the CSV file
 
