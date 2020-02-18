@@ -2,14 +2,11 @@ const pool = require('../pool.js');
 const listings = require('./genListings.js');
 const images = require('./genImages.js');
 
-// Call the CSV generators
-listings.csv(50);
-images.csv(50);
+// Call the CSV generators (+1 to the input number)
+// listings.csv(11);
+images.csv(1000000);
 
-// Insert the CSV files
-
-
-
+// Insert the CSV file
 
 /*
 ===========================================================

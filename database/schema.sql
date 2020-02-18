@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS public.listings;
 CREATE TABLE public.listings (
   id SERIAL,
   title VARCHAR(64) NOT NULL,
-  imageId INTEGER,
+  imgId INTEGER,
   PRIMARY KEY (id)
 );
 
@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS public.images;
 
 CREATE TABLE public.images (
   id SERIAL,
-  imageSet INTEGER NOT NULL,
+  imgSet INTEGER NOT NULL,
   imgUrl VARCHAR(256) NOT NULL,
   imgDesc VARCHAR(256) NULL,
   PRIMARY KEY (id)
@@ -33,7 +33,7 @@ CREATE TABLE public.images (
 -- Foreign Keys
 -- ---
 
-ALTER TABLE listings ADD FOREIGN KEY (imageId) REFERENCES public.images (id);
+ALTER TABLE listings ADD FOREIGN KEY (imgId) REFERENCES public.images (id);
 
 -- ---
 -- Test Data

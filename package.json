@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "seed": "psql -d postgres -U root < database/schema.sql",
-    "csv-test": "node database/seed/seed.js",
+    "csv-test": "node --max-old-space-size=4096 database/seed/seed.js",
     "react-dev": "webpack -d --watch",
     "react-prod": "webpack -p",
     "start": "nodemon server/index.js"
@@ -26,6 +26,7 @@
     "@fast-csv/format": "^4.0.3",
     "axios": "^0.19.2",
     "babel-preset-react": "^6.24.1",
+    "cluster": "^0.7.7",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mysql": "^2.18.1",
