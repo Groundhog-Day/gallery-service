@@ -1,7 +1,15 @@
+# PostgreSQL login
 database/config.js
 
+# NPM
 node_modules
 package-lock.json
 
+# Webpack
 client/dist/react-dom.development.js
 client/dist/react.development.js
+client/dist/bundle.js
+
+# CSV files
+database/seed/images.csv
+database/seed/listings.csv
