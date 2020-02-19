@@ -1,7 +1,12 @@
 const pool = require('../pool.js');
-const csv = require('@fast-csv/format');
+const fastcsv = require('@fast-csv/format');
 const faker = require('faker');
 const path = require('path');
+const fs = require('fs');
+
+const csvStream = fastcsv.format;
+
+// var writeStream = fs.createWriteStream('./listings.csv', { flag: 'a' });
 
 module.exports = {
   csvCount: 1,
@@ -12,7 +17,7 @@ module.exports = {
     let rows = [];
     for (let i = 1; i < numOfRows; i++) {
 
-      if (i % chunk === 0) {
+      if (i % 50 === 0) {
         this.csvWrite(`listings${this.csvCount}.csv`, rows);
         this.csvCount++;
         rows = [];
@@ -22,21 +27,11 @@ module.exports = {
     }
 
 
-
-
-
-
-
-
-
-
-
-
   },
 
   csvWrite: function(pathToCSV, rows) {
     // Write to provided .csv file
-    csv.writeToPath(path.resolve(__dirname, pathToCSV), rows)
+    fastcsv.writeToPath(path.resolve(__dirname, pathToCSV), rows)
       .on('error', err => console.error(err))
       .on('finish', () => {
         console.log(Date.now());

@@ -13,6 +13,10 @@ module.exports = {
   seed: function(numOfRows, chunk) {
     console.log(Date.now());
 
+    // generates an array of 500,000
+    // writes the array to a CSV file
+
+
     // Generate CSV data
     let rows = [];
 
