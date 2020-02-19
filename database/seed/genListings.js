@@ -4,25 +4,59 @@ const faker = require('faker');
 const path = require('path');
 
 module.exports = {
-  csv: function(numOfRows) {
+  csvCount: 1,
+  seed: function(numOfRows, chunk) {
+    console.log(Date.now());
+
     // Generate CSV data
-    let rows = [[ 'title', 'imgId' ]];
+    let rows = [];
     for (let i = 1; i < numOfRows; i++) {
+
+      if (i % chunk === 0) {
+        this.csvWrite(`listings${this.csvCount}.csv`, rows);
+        this.csvCount++;
+        rows = [];
+      }
+
       rows.push([ faker.commerce.productName(), i ]);
     }
 
-    // Write CSV file
-    csv.writeToPath(path.resolve(__dirname, 'listings.csv'), rows)
+
+
+
+
+
+
+
+
+
+
+
+  },
+
+  csvWrite: function(pathToCSV, rows) {
+    // Write to provided .csv file
+    csv.writeToPath(path.resolve(__dirname, pathToCSV), rows)
       .on('error', err => console.error(err))
       .on('finish', () => {
-        console.log('listings.csv generated!');
-        // Insert the CSV into Postgres
-        this.insertion();
+        console.log(Date.now());
+        console.log(pathToCSV, 'generated!');
+        this.insertion(pathToCSV);
       });
   },
-  count: 2,
 
-  insertion: function() {
-    // insert into tables with chunks of 10,000
+  insertion: function(pathToCSV) {
+    // inserts CSV into PostgreSQL
+    let query = `copy listings (title, imgId) from '/Users/sean/Documents/hack-reactor/sdc/gallery-service/database/seed/${pathToCSV}' delimiter ',' csv header;`;
+
+    pool.query(query, (err, res) => {
+      if (err) {
+        console.log(err.stack);
+      } else {
+        console.log(Date.now());
+        console.log(`successfully inserted ${pathToCSV}! `);
+      }
+    });
+
   }
 };

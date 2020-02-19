@@ -9,38 +9,50 @@ let rndInt = function (k, y) {
 };
 
 module.exports = {
-  csv: function(numOfRows) {
+  csvCount: 1,
+  seed: function(numOfRows, chunk) {
+    console.log(Date.now());
 
-    // console.log(Date.now());
-    // // Generate CSV data
-    // let rows = [[ 'imgSet', 'imgUrl', 'imgDesc' ]];
-    // for (let i = 1; i < numOfRows; i++) {
-    //   let x = rndInt(4, 7);
-    //   for (let j = 0; j < x; j++) {
-    //     rows.push([ i, faker.image.city(), faker.hacker.phrase() ]);
-    //   }
-    // }
+    // Generate CSV data
+    let rows = [];
 
-    // // Write CSV file
-    // csv.writeToPath(path.resolve(__dirname, 'images.csv'), rows)
-    //   .on('error', err => console.error(err))
-    //   .on('finish', () => {
-    //     console.log(Date.now());
-    //     console.log('images.csv generated!');
-    //     this.insertion();
-    //   });
+    for (let i = 1; i < numOfRows; i++) {
+
+      if (i % chunk === 0) {
+        this.csvWrite(`images${this.csvCount}.csv`, rows);
+        this.csvCount++;
+        rows = [];
+      }
+
+      let x = rndInt(4, 7);
+
+      for (let j = 0; j < x; j++) {
+        rows.push([ i, faker.image.city(), faker.hacker.phrase() ]);
+      }
+    }
   },
 
-  insertion: function() {
-    // inserts the CSV file into
-    let query = `copy images (imgSet, imgUrl, imgDesc) from '/Users/sean/Documents/hack-reactor/sdc/gallery-service/database/seed/images.csv' delimiter ',' csv header;`;
+  csvWrite: function(pathToCSV, rows) {
+    // Write to provided .csv file
+    csv.writeToPath(path.resolve(__dirname, pathToCSV), rows)
+      .on('error', err => console.error(err))
+      .on('finish', () => {
+        console.log(Date.now());
+        console.log(pathToCSV, 'generated!');
+        this.insertion(pathToCSV);
+      });
+  },
+
+  insertion: function(pathToCSV) {
+    // inserts CSV into PostgreSQL
+    let query = `copy images (imgSet, imgUrl, imgDesc) from '/Users/sean/Documents/hack-reactor/sdc/gallery-service/database/seed/${pathToCSV}' delimiter ',' csv header;`;
 
     pool.query(query, (err, res) => {
       if (err) {
         console.log(err.stack);
       } else {
         console.log(Date.now());
-        console.log('successfully inserted CSV! ', res.rows);
+        console.log(`successfully inserted ${pathToCSV}! `);
       }
     });
 

@@ -2,26 +2,15 @@ const pool = require('../pool.js');
 const listings = require('./genListings.js');
 const images = require('./genImages.js');
 
-// Call the CSV generators (+1 to the input number)
-// listings.csv(11);
-images.csv(100);
+// Call the seeding scripts (+1 to intended input number)
+listings.seed(11, 2);
+// images.seed(11, 2);
 
-// Insert the CSV file
-
-/*
-===========================================================
-NOTES:
-============================================================
-
-var dataToWrite;
-var fs = require('fs');
-
-fs.writeFile('form-tracking/formList.csv', dataToWrite, 'utf8', function (err) {
-  if (err) {
-    console.log('Some error occured - file either not saved or corrupted file saved.');
-  } else{
-    console.log('It\'s saved!');
-  }
-});
-
-========================================================= */
+// Add foreign key
+// pool.query('ALTER TABLE listings ADD FOREIGN KEY (imgId) REFERENCES public.images (id);', (err, res) => {
+//   if (err) {
+//     console.log(err.stack);
+//   } else {
+//     console.log('foreign key added!');
+//   }
+// });
