@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS public.listings;
 
 CREATE TABLE public.listings (
   id SERIAL,
-  title VARCHAR(64) NOT NULL,
+  title VARCHAR(256) NOT NULL,
   imgId INTEGER,
   PRIMARY KEY (id)
 );

@@ -1,68 +1,68 @@
 const pool = require('../pool.js');
-const csv = require('@fast-csv/format');
 const faker = require('faker');
 const path = require('path');
+const fs = require('fs');
+
+let PATH_CSV = path.resolve(__dirname, 'images.csv');
 
 // k = min, x = max
-let rndInt = function (k, y) {
-  return Math.floor(Math.random() * (y - k + 1) ) + k;
-};
+// let rndInt = function (k, y) {
+//   return Math.floor(Math.random() * (y - k + 1) ) + k;
+// };
 
 module.exports = {
-  csvCount: 1,
-  seed: function(numOfRows, chunk) {
-    console.log(Date.now());
+  seed: function() {
+    console.log('writing images CSV...  ', Date.now());
 
-    // generates an array of 500,000
-    // writes the array to a CSV file
+    const writeStream = fs.createWriteStream(PATH_CSV);
+    writeStream.write('imgSet,imgUrl,imgDesc\n', 'utf8');
 
+    const genImages = function(writer, encoding, callback) {
+      let i = 10000000;
+      let id = 0;
+      let imgSet = 1;
 
-    // Generate CSV data
-    let rows = [];
+      const write = function() {
+        let ok = true;
+        do {
+          i--;
+          id++;
 
-    for (let i = 1; i < numOfRows; i++) {
+          const data = `${imgSet}|${faker.image.business()}|${faker.hacker.phrase()}\n`;
 
-      if (i % chunk === 0) {
-        this.csvWrite(`images${this.csvCount}.csv`, rows);
-        this.csvCount++;
-        rows = [];
-      }
+          if (id % 5 === 0 ) {
+            imgSet++;
+          }
 
-      let x = rndInt(4, 7);
+          if (i === 0) {
+            writer.write(data, encoding, callback);
+          } else {
+            ok = writer.write(data, encoding);
+          }
+        } while (i > 0 && ok);
+        if (i > 0) {
+          writer.once('drain', write);
+        }
+      };
+      write();
+    };
 
-      for (let j = 0; j < x; j++) {
-        rows.push([ i, faker.image.city(), faker.hacker.phrase() ]);
-      }
-    }
+    genImages(writeStream, 'utf-8', () => {
+      console.log('images CSV created! Initiate insertion process', Date.now());
+      this.insertion();
+      writeStream.end();
+    });
   },
 
-  csvWrite: function(pathToCSV, rows) {
-    // Write to provided .csv file
-    csv.writeToPath(path.resolve(__dirname, pathToCSV), rows)
-      .on('error', err => console.error(err))
-      .on('finish', () => {
-        console.log(Date.now());
-        console.log(pathToCSV, 'generated!');
-        this.insertion(pathToCSV);
-      });
-  },
-
-  insertion: function(pathToCSV) {
-    // inserts CSV into PostgreSQL
-    let query = `copy images (imgSet, imgUrl, imgDesc) from '/Users/sean/Documents/hack-reactor/sdc/gallery-service/database/seed/${pathToCSV}' delimiter ',' csv header;`;
+  insertion: function() {
+    let query = `copy images (imgSet, imgUrl, imgDesc) from '${PATH_CSV}' delimiter '|' csv header;`;
 
     pool.query(query, (err, res) => {
       if (err) {
-        console.log(err.stack);
+        console.log('Error in images.insertion: ', err.stack);
       } else {
-        console.log(Date.now());
-        console.log(`successfully inserted ${pathToCSV}! `);
+        console.log(`successfully inserted ${PATH_CSV}! ${Date.now()}`);
       }
     });
-
   }
 };
-
-// copy listings (title, imgId) from '/Users/sean/Documents/hack-reactor/sdc/gallery-service/database/seed/listings.csv' delimiter ',' csv header;
-
-// copy images (imgSet, imgUrl, imgDesc) from '/Users/sean/Documents/hack-reactor/sdc/gallery-service/database/seed/images.csv' delimiter ',' csv header;
