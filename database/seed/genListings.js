@@ -5,29 +5,29 @@ const fs = require('fs');
 
 let PATH_CSV = path.resolve(__dirname, 'listings.csv');
 
+// INSERT INTO listings (title) VALUES ('city apartment');
+
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '1.png', 'bathroom');
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '2.png', 'garden');
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '3.png', 'treehouse');
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '4.png', 'kitchen');3
+
 module.exports = {
   seed: function() {
     console.log('writing listings CSV...  ', Date.now());
 
     const writeStream = fs.createWriteStream(PATH_CSV);
-    writeStream.write('title,imgId\n', 'utf8');
+    writeStream.write('title\n', 'utf8');
 
     const genListings = function(writer, encoding, callback) {
-      let i = 10000000;
-      let imgId = 0;
-      let availableSets = i / 5;
+      let i = 2000000;
 
       const write = function() {
         let ok = true;
         do {
           i--;
-          imgId++;
 
-          const data = `${faker.commerce.productName()}|${imgId}\n`;
-
-          if (imgId === availableSets) {
-            imgId = 0;
-          }
+          const data = `${faker.commerce.productName()}\n`;
 
           if (i === 0) {
             writer.write(data, encoding, callback);
@@ -50,7 +50,7 @@ module.exports = {
   },
 
   insertion: function() {
-    let query = `copy listings (title, imgId) from '${PATH_CSV}' delimiter '|' csv header;`;
+    let query = `copy listings (title) from '${PATH_CSV}' csv header;`;
 
     pool.query(query, (err, res) => {
       if (err) {

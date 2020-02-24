@@ -5,33 +5,41 @@ const fs = require('fs');
 
 let PATH_CSV = path.resolve(__dirname, 'images.csv');
 
-// k = min, x = max
-// let rndInt = function (k, y) {
-//   return Math.floor(Math.random() * (y - k + 1) ) + k;
-// };
+// INSERT INTO listings (title) VALUES ('city apartment');
+
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '1.png', 'bathroom');
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '2.png', 'garden');
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '3.png', 'treehouse');
+// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '4.png', 'kitchen');
 
 module.exports = {
   seed: function() {
     console.log('writing images CSV...  ', Date.now());
 
     const writeStream = fs.createWriteStream(PATH_CSV);
-    writeStream.write('imgSet,imgUrl,imgDesc\n', 'utf8');
+    writeStream.write('list_id,img_url,img_desc\n', 'utf8');
 
     const genImages = function(writer, encoding, callback) {
       let i = 10000000;
-      let id = 0;
+      let intFlag = 0;
       let imgSet = 1;
+      let cat = 0;
 
       const write = function() {
         let ok = true;
         do {
           i--;
-          id++;
+          intFlag++;
+          cat++;
 
-          const data = `${imgSet}|${faker.image.business()}|${faker.hacker.phrase()}\n`;
+          const data = `${imgSet}|http://placekitten.com/200/300?image=${cat}|${faker.hacker.phrase()}\n`;
 
-          if (id % 5 === 0 ) {
+          if (intFlag % 5 === 0 ) {
             imgSet++;
+          }
+
+          if (cat === 16) {
+            cat = 0;
           }
 
           if (i === 0) {
@@ -44,6 +52,7 @@ module.exports = {
           writer.once('drain', write);
         }
       };
+
       write();
     };
 
@@ -55,13 +64,20 @@ module.exports = {
   },
 
   insertion: function() {
-    let query = `copy images (imgSet, imgUrl, imgDesc) from '${PATH_CSV}' delimiter '|' csv header;`;
+    let query = `copy images (list_id, img_url, img_desc) from '${PATH_CSV}' delimiter '|' csv header;`;
 
     pool.query(query, (err, res) => {
       if (err) {
         console.log('Error in images.insertion: ', err.stack);
       } else {
         console.log(`successfully inserted ${PATH_CSV}! ${Date.now()}`);
+        pool.query('ALTER TABLE images ADD FOREIGN KEY (list_id) REFERENCES public.listings (list_id);', (err, res) => {
+          if (err) {
+            console.log(err.stack);
+          } else {
+            console.log('foreign key added!');
+          }
+        });
       }
     });
   }
