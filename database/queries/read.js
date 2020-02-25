@@ -1,21 +1,24 @@
+const pool = require('../pool.js');
+
 module.exports = {
-  // id = randomly generated accommodation id from front-end
+  // id = random integer between 1 and 2,000,000
   readId: function(id, cb) {
-    result = {};
-    db.query(`SELECT * FROM images where accommodationId=${id};`, (err, data) => {
+    let query = `
+    SELECT listings.list_id, listings.title, images.img_url, images.img_desc
+    FROM listings
+    INNER JOIN images
+    ON listings.list_id = images.list_id
+    WHERE images.list_id = ${id};
+    `;
+
+    pool.query(query, (err, res) => {
       if (err) {
-        cb(err);
+        console.log('Error in readId():', err.stack);
+        cb(err.stack, null);
       } else {
-        result.imgArr = data;
-        db.query(`SELECT name FROM accommodations where id=${id};`, (err, data) => {
-          if (err) {
-            cb(err);
-          } else {
-            result.name = data[0].name;
-            cb(null, result);
-          }
-        });
+        cb(null, res.rows);
       }
     });
+
   }
 };

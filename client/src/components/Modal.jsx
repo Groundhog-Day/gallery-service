@@ -33,7 +33,7 @@ const ImageWrapper = styled.div`
   align-self: center;
   justify-self: center;
   width: 55%;
-`
+`;
 const MainImage = styled.img`
   border-radius: 15px;
   align-items: center;
@@ -82,9 +82,9 @@ export default class Modal extends React.Component {
     super(props);
     this.state = {
 
-    }
+    };
   }
- 
+
   // key codes
   // esc key 27
   // left arrow 37
@@ -93,35 +93,34 @@ export default class Modal extends React.Component {
     e = e || window.event;
     if (e.keyCode == '39') {
       this.props.handleArrowClick(true);
-    }
-    else if (e.keyCode == '37') {
+    } else if (e.keyCode == '37') {
       this.props.handleArrowClick(false);
-    }
-    else if (e.keyCode == '27') {
+    } else if (e.keyCode == '27') {
       this.props.showModal();
     }
   }
 
   render() {
-    if(!this.props.show){
+    if (!this.props.show) {
       return null;
     }
     document.onkeydown = this.handleKeyPress.bind(this);
+    console.log('desc wip: ', this.props);
     return (
-    <ModalBackdrop>
-      <ModalBody>
-        <Arrow onClick={() => {this.props.handleArrowClick(false)}} >&#x2039;</Arrow>
-        <ImageWrapper>
-          <MainImage src={this.props.imgs[this.props.currentImage].image} />
-        </ImageWrapper>
-        <Arrow onClick={() => {this.props.handleArrowClick(true)}}>&#x203A;</Arrow>
-        <ImageCounter>
-          <ImageList currentImage={this.props.currentImage} imgs={this.props.imgs} click={this.props.handleThumbClick}></ImageList>
-          {this.props.currentImage + 1}/{this.props.imgs.length}
-          <Description><br></br>{this.props.name}</Description>
-        </ImageCounter>
-      </ModalBody>
-      <CloseButton onClick={this.props.showModal} id='close'>&times;</CloseButton>
-    </ModalBackdrop>);
+      <ModalBackdrop>
+        <ModalBody>
+          <Arrow onClick={() => { this.props.handleArrowClick(false); }} >&#x2039;</Arrow>
+          <ImageWrapper>
+            <MainImage src={this.props.imgs[this.props.currentImage].img_url} />
+          </ImageWrapper>
+          <Arrow onClick={() => { this.props.handleArrowClick(true); }}>&#x203A;</Arrow>
+          <ImageCounter>
+            <ImageList currentImage={this.props.currentImage} imgs={this.props.imgs} click={this.props.handleThumbClick}></ImageList>
+            {this.props.currentImage + 1}/{this.props.imgs.length}
+            <Description><br></br>{this.props.imgs[0].img_desc}</Description>
+          </ImageCounter>
+        </ModalBody>
+        <CloseButton onClick={this.props.showModal} id='close'>&times;</CloseButton>
+      </ModalBackdrop>);
   }
-};
+}

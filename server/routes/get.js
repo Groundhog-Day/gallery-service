@@ -10,7 +10,8 @@ getRoutes.get('/api/:id', (req, res) => {
       console.log(err);
       res.sendStatus(500);
     } else {
-      res.status(200).end(JSON.stringify(data));
+      console.log(data);
+      res.send(JSON.stringify(data));
     }
   });
 });

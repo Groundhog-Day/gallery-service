@@ -5,13 +5,6 @@ const fs = require('fs');
 
 let PATH_CSV = path.resolve(__dirname, 'listings.csv');
 
-// INSERT INTO listings (title) VALUES ('city apartment');
-
-// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '1.png', 'bathroom');
-// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '2.png', 'garden');
-// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '3.png', 'treehouse');
-// INSERT INTO images (list_id, img_url, img_desc) VALUES (1, '4.png', 'kitchen');3
-
 module.exports = {
   seed: function() {
     console.log('writing listings CSV...  ', Date.now());
