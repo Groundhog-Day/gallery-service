@@ -26,6 +26,7 @@
     "@fast-csv/format": "^4.0.3",
     "axios": "^0.19.2",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.19.0",
     "cluster": "^0.7.7",
     "csv-write-stream": "^2.0.0",
     "csv-writer": "^1.6.0",

@@ -21,7 +21,8 @@ export default class App extends React.Component {
       currentImage: 0,
       name: '',
     };
-    // request images for a random accomodationId
+
+    // request images for a random list_id
     axios({
       method: 'GET',
       url: `/api/${Math.ceil(Math.random() * 2000000)}`,

@@ -24,9 +24,19 @@
 #### Read / GET
 
 1. ``` /api/:id```
-a. For the specified ID, returns a listing's image and address data
+a. Returns all listing data at a specified id
 
 #### Update / PUT
 
+1. ``` /api/listing/update ```
+a. Updates the title of a listing at a specified id
+
+Provide the following key-value pairs in the request body:
+
+```
+	id:[INTEGER]
+	title:[STRING]
+```
 
 #### Delete / DELETE
+
