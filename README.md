@@ -17,7 +17,7 @@
 
 ## API Documentation
 
-#### GET
+### GET
 
 1. ``` /api/:id```
 
@@ -25,7 +25,7 @@ Returns all listing data at a specified id
 
 ___
 
-#### POST
+### POST
 
 1. ```/api/listing/new```
 
@@ -37,7 +37,7 @@ Creates a new listing in the database, provided a valid request body:
     }
 ```
 ___
-#### PUT
+### PUT
 
 1. ``` /api/listing/update ```
 
@@ -51,7 +51,7 @@ Updates the title of a listing, provided a valid request body:
 ```
 
 ___
-#### DELETE
+### DELETE
 
 Not currently supported.
 ___
