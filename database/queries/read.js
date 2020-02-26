@@ -10,6 +10,7 @@ module.exports = {
     ON listings.list_id = images.list_id
     WHERE images.list_id = ${id};
     `;
+    console.log(query);
 
     pool.query(query, (err, res) => {
       if (err) {

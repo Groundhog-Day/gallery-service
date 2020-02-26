@@ -13,3 +13,10 @@ client/dist/bundle.js
 # CSV files
 database/seed/images.csv
 database/seed/listings.csv
+
+### Sensitive information:
+
+# New Relic
+newrelic_agent.log
+newrelic.js
+
