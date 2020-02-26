@@ -1,5 +1,4 @@
-##  Airbnb's image carousel
-###### With a revitalised backend!
+##  Groundhog-Day image carousel
 
 ### Requirements
 
@@ -16,27 +15,43 @@
 4. ```$ npm run seed```
 5. ```$npm run react-dev``` and ```$npm run start```
 
-### RESTful API Specification
-*CRUD / HTTP*
+## API Documentation
 
-#### Create / POST
-
-#### Read / GET
+#### GET
 
 1. ``` /api/:id```
-a. Returns all listing data at a specified id
 
-#### Update / PUT
+Returns all listing data at a specified id
+
+___
+
+#### POST
+
+1. ```/api/listing/new```
+
+Creates a new listing in the database, provided a valid request body:
+```
+	{
+    	"title": String,
+        "images": Array<{ "url": String, "desc": String } [, ...]>,
+    }
+```
+___
+#### PUT
 
 1. ``` /api/listing/update ```
-a. Updates the title of a listing at a specified id
 
-Provide the following key-value pairs in the request body:
+Updates the title of a listing, provided a valid request body:
 
 ```
-	id:[INTEGER]
-	title:[STRING]
+	{
+		id: Integer
+		title: String
+	}
 ```
 
-#### Delete / DELETE
+___
+#### DELETE
 
+Not currently supported.
+___
