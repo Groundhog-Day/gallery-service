@@ -1,18 +1,37 @@
-DROP DATABASE IF EXISTS aircarousel;
+/*
+ * Execute this file from the terminal:
+ * `psql -d postgres -U root < schema.sql`
+ *
+ */
 
-CREATE DATABASE aircarousel;
+DROP DATABASE IF EXISTS airbnb;
 
-USE aircarousel;
+CREATE DATABASE airbnb;
 
-CREATE TABLE images (
-id INT NOT NULL AUTO_INCREMENT,
-image VARCHAR(256),
-accommodationId INT,
-PRIMARY KEY (id)
+\c airbnb;
+
+DROP TABLE IF EXISTS public.listings;
+
+CREATE TABLE public.listings (
+  list_id SERIAL,
+  title VARCHAR(256) NOT NULL,
+  PRIMARY KEY (list_id)
 );
 
-CREATE TABLE accommodations (
-id INT NOT NULL AUTO_INCREMENT,
-name VARCHAR(64),
-PRIMARY KEY (id)
+DROP TABLE IF EXISTS public.images;
+
+CREATE TABLE public.images (
+  img_id SERIAL,
+  list_id INTEGER,
+  img_url VARCHAR(256) NOT NULL,
+  img_desc VARCHAR(256) NULL,
+  PRIMARY KEY (img_id)
 );
+
+-- SELECT listings.list_id, listings.title, images.img_url, images.img_desc
+-- FROM listings
+-- INNER JOIN images
+-- ON listings.list_id = images.list_id
+-- WHERE listings.list_id = 1;
+
+-- CREATE INDEX idx_images_list_id ON images(list_id);

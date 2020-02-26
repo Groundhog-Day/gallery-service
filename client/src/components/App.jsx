@@ -21,14 +21,15 @@ export default class App extends React.Component {
       currentImage: 0,
       name: '',
     };
-    // request images for a random accomodationId
+
+    // request images for a random list_id
     axios({
       method: 'GET',
-      url: `/api/${Math.ceil(Math.random() * 100)}`,
+      url: `/api/${Math.ceil(Math.random() * 2000000)}`,
     })
       .then((res) => {
-        console.log(res.data);
-        this.setState({ data: res.data.imgArr, name: res.data.name });
+        console.log('RESPONSE FROM DB:', res.data);
+        this.setState({ data: res.data, name: res.data[0].title });
       })
       .catch((err) => { console.log(err); });
 

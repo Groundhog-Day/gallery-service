@@ -31,10 +31,10 @@ export default function FrontImageVert(props) {
   return (
     <MainImageWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[props.startIndex].image} onClick={() => { props.click(props.startIndex); }} />
+        <SizedImage src={props.imgs[props.startIndex].img_url} onClick={() => { props.click(props.startIndex); }} />
       </InnerWrapper>
       <InnerWrapper>
-        <SizedImage src={props.imgs[props.startIndex + 1].image} onClick={() => { props.click(props.startIndex + 1); }} />
+        <SizedImage src={props.imgs[props.startIndex + 1].img_url} onClick={() => { props.click(props.startIndex + 1); }} />
       </InnerWrapper>
     </MainImageWrapper>
   );

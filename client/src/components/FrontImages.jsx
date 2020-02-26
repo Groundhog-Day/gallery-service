@@ -40,7 +40,7 @@ export default function FrontImages(props) {
   return (
     <MainWrapper>
       <FirstImageWrapper>
-        <FirstImage src={imgs[0].image} onClick={() => { click(0); }} />
+        <FirstImage src={imgs[0].img_url} onClick={() => { click(0); }} />
       </FirstImageWrapper>
       <FrontImageVert imgs={imgs} click={click} startIndex={1} />
       <FrontImageVert imgs={imgs} click={click} startIndex={3} />

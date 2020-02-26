@@ -11,7 +11,7 @@ const MainWrapper = styled.div`
 `;
 
 const FirstInnerWrapper = styled.div`
-  
+
   max-width: 105vh !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -59,7 +59,7 @@ const MainList = styled.ul`
   flex-direction: row;
   position: absolute !important;
   list-style-type: none !important;
-  left: 0px !important;  
+  left: 0px !important;
   margin: 0px !important;
   padding: 0px 0px 0px 8px !important;
 `;
@@ -68,23 +68,24 @@ export default function ImageList(props) {
 
 
   // test li <li style={{'marginLeft': '8px'}}><img src='https://picsum.photos/48'></img></li>
-  return(
-  <MainWrapper>
-    <FirstInnerWrapper>
-      <SecondInnerWrapper>
-        <FirstGradientDiv />
-        <SecondGradientDiv />
-        <Layer1>
-          <div style={{position: 'absolute'}}>
-            <MainList currentImage={props.currentImage} imgs={props.imgs}>
-              {props.imgs.map((a, i) => {
-                return <ListItem img={a.image} index={i} currentImage={props.currentImage} click={props.click} key={i}/>}
-              )}
-            </MainList>
-          </div>
-        </Layer1>
-      </SecondInnerWrapper>
-    </FirstInnerWrapper>
-  </MainWrapper>
+  return (
+    <MainWrapper>
+      <FirstInnerWrapper>
+        <SecondInnerWrapper>
+          <FirstGradientDiv />
+          <SecondGradientDiv />
+          <Layer1>
+            <div style={{position: 'absolute'}}>
+              <MainList currentImage={props.currentImage} imgs={props.imgs}>
+                {props.imgs.map((a, i) => {
+                  return <ListItem img={a.img_url} index={i} currentImage={props.currentImage} click={props.click} key={i}/>;
+                }
+                )}
+              </MainList>
+            </div>
+          </Layer1>
+        </SecondInnerWrapper>
+      </FirstInnerWrapper>
+    </MainWrapper>
   );
 }
