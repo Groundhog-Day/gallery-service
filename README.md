@@ -1,4 +1,5 @@
 ##  Groundhog-Day image carousel
+> A backend PostgreSQL service stress tested up to 50 million rows with optimized low latency SQL queries
 
 ### Requirements
 
@@ -49,9 +50,3 @@ Updates the title of a listing, provided a valid request body:
 		title: String
 	}
 ```
-
-___
-### DELETE
-
-Not currently supported.
-___
